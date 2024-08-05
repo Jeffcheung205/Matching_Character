@@ -28,10 +28,6 @@ const handleCardClick = (index) => {
         setFirstCardIndex(index);
       } else {
         setCanFlip(false);
-        if (characters[firstCardIndex].id === characters[index].id) {
-          setScore(score + 1);
-          setFirstCardIndex(null);
-          setCanFlip(true); 
         } else {
           setTimeout(() => {
             newFlippedCards[firstCardIndex] = false;
