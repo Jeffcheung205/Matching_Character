@@ -4,7 +4,7 @@ window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
   const MatchingCharacter = ({ assetsUrl }) => {
-    const [characters] = useState([
+    const initialMatching = [
       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
@@ -42,7 +42,7 @@ window.initGame = (React, assetsUrl) => {
           setScore(score + 1);
           setFirstCardIndex(null);
           setCanFlip(true);
-          if (score + 1 === initialCharacters.length / 2) {
+          if (score + 1 === initialMatching.length / 2) {
             alert("All cards have been matched!");
             const shuffledCharacters = shuffleArray([...initialCharacters]);
             setCharacters(shuffledCharacters);
