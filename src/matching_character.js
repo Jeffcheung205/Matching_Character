@@ -16,6 +16,7 @@ window.initGame = (React, assetsUrl) => {
     const [firstCardIndex, setFirstCardIndex] = useState(null);
     const [canFlip, setCanFlip] = useState(true);
     const [score, setScore] = useState(0);
+    const [message, setMessage] = useState(""); // New state for the message
 
     const shuffleArray = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
@@ -40,10 +41,10 @@ window.initGame = (React, assetsUrl) => {
           setScore(score + 1);
           setFirstCardIndex(null);
           setCanFlip(true);
-
+          
           // Check if all pairs have been matched
           if (score + 1 === initialCharacters.length / 2) {
-            alert("All Cards successfully matched!");
+            setMessage("All Cards successfully matched!"); // Set the message instead of an alert
             const shuffledCharacters = shuffleArray([...initialCharacters]);
             setCharacters(shuffledCharacters);
             setFlippedCards(Array(initialCharacters.length).fill(false));
@@ -66,6 +67,8 @@ window.initGame = (React, assetsUrl) => {
       { className: "matching-character" },
       React.createElement('h2', null, "Matching Character Game"),
       React.createElement('p', null, `Score: ${score}`),
+      // Render the message if it exists
+      message && React.createElement('p', { className: "success-message" }, message),
       React.createElement(
         'div',
         { className: "game-board" },
