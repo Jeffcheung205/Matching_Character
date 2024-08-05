@@ -31,7 +31,7 @@ window.initGame = (React, assetsUrl) => {
 
       const newFlipCards = [...flipCards];
       newFlippedCards[index] = true;
-      setFlippedCards(newFlippedCards);
+      setFlippedCards(newFlipCards);
 
       if (firstCardIndex === null) {
         setFirstCardIndex(index);
@@ -40,8 +40,8 @@ window.initGame = (React, assetsUrl) => {
           setScore(score + 1);
         } else {
           setTimeout(() => {
-            newFlippedCards[firstCardIndex] = false;
-            newFlippedCards[index] = false;
+            newFlipCards[firstCardIndex] = false;
+            newFlipCards[index] = false;
             setFlipCards(newFlipCards);
           }, 1000);
         }
