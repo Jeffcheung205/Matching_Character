@@ -18,6 +18,15 @@ window.initGame = (React, assetsUrl) => {
     const [canFlip, setCanFlip] = useState(true); 
     const [score, setScore] = useState(0);
 
+    
+    const shuffleArray = (array) => {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    };
+
     const handleCardClick = (index) => {
       if (!canFlip || flippedCards[index]) return;
 
@@ -28,23 +37,30 @@ window.initGame = (React, assetsUrl) => {
       if (firstCardIndex === null) {
         setFirstCardIndex(index);
       } else {
-        setCanFlip(false); 
+        setCanFlip(false);
         if (characters[firstCardIndex].id === characters[index].id) {
           setScore(score + 1);
           setFirstCardIndex(null);
-          setCanFlip(true); 
+          setCanFlip(true);
+          if (score + 1 === initialCharacters.length / 2) {
+            alert("All cards have been matched!");
+            const shuffledCharacters = shuffleArray([...initialCharacters]);
+            setCharacters(shuffledCharacters);
+            setFlippedCards(Array(6).fill(false));
+            setScore(0);
+          }
         } else {
           setTimeout(() => {
             newFlippedCards[firstCardIndex] = false;
             newFlippedCards[index] = false;
             setFlippedCards(newFlippedCards);
             setFirstCardIndex(null);
-            setCanFlip(true); 
+            setCanFlip(true);
           }, 1000);
         }
       }
     };
-
+    
     return React.createElement(
       'div',
       { className: "matching-character" },
