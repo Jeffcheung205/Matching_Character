@@ -59,7 +59,7 @@ window.initGame = (React, assetsUrl) => {
             React.createElement('div', { className: 'card' }, 
               React.createElement('div', { className: 'card-inner' },
                 React.createElement('div', { className: 'card-front' }, "?"),
-                flippedCards[index] && React.createElement('div', { className: 'card-back' },
+                React.createElement('div', { className: 'card-back', style: { display: flippedCards[index] ? 'block' : 'none' } },
                   React.createElement('img', { src: character.src, alt: "Character" })
                 )
               )
