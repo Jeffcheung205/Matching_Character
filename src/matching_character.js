@@ -10,16 +10,12 @@ window.initGame = (React, assetsUrl) => {
 
   const MatchingCharacter = ({ assetsUrl }) => {
     const [characters] = useState([
-      { id: 1, src: `${assetsUrl}/character1.png` },
-      { id: 2, src: `${assetsUrl}/character2.png` },
-      { id: 1, src: `${assetsUrl}/character1.png` }, // Duplicate for matching
-      { id: 2, src: `${assetsUrl}/character2.png` }, // Duplicate for matching
-      { id: 3, src: `${assetsUrl}/character3.png` },
-      { id: 3, src: `${assetsUrl}/character3.png` }, // Duplicate for matching
-      { id: 4, src: `${assetsUrl}/character4.png` },
-      { id: 4, src: `${assetsUrl}/character4.png` }, // Duplicate for matching
-      { id: 5, src: `${assetsUrl}/character5.png` },
-      { id: 5, src: `${assetsUrl}/character5.png` }, // Duplicate for matching
+      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
+      { id: 2, src: `${assetsUrl}/Squirtle.png` },
+      { id: 1, src: `${assetsUrl}/Pikachiu.png` }, // Duplicate for matching
+      { id: 2, src: `${assetsUrl}/Squirtle.png` }, // Duplicate for matching
+      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
+      { id: 3, src: `${assetsUrl}/Bulbasaur.png` }, // Duplicate for matching
     ]);
     
     const [flipCards, setFlipCards] = useState(Array(10).fill(false));
