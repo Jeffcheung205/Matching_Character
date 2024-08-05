@@ -9,21 +9,17 @@
   margin: 20px auto;
   width: 320px;
 }
-
-.char {
-  width: 100px;
-  height: 100px;
-  background-color: #8B4513;
-  border-radius: 50%;
-  cursor: pointer;
+.character {
+  width: 100px; 
+  height: 100px; 
+  background-color: #8B4513; 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
 }
-
-.mole.active {
-  background-color: #228B22;
-}
-
-.mole img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.character img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
 }
