@@ -1,19 +1,19 @@
 // This would be stored in the 'src' folder of the GitHub repository
 // matching_character.js
 window.initGame = (React, assetsUrl) => {
-  const { useState, useEffect } = React;
+  const { useState } = React;
 
   const MatchingCharacter = ({ assetsUrl }) => {
     const [characters] = useState([
       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
-      { id: 1, src: `${assetsUrl}/Pikachiu.png` }, // Duplicate for matching
-      { id: 2, src: `${assetsUrl}/Squirtle.png` }, // Duplicate for matching
+      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
+      { id: 2, src: `${assetsUrl}/Squirtle.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-      { id: 3, src: `${assetsUrl}/Bulbasaur.png` }, // Duplicate for matching
+      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
     ]);
     
-    const [flippedCards, setFlippedCards] = useState(Array(6).fill(false)); // Changed to 6 to match the characters
+    const [flippedCards, setFlippedCards] = useState(Array(6).fill(false));
     const [firstCardIndex, setFirstCardIndex] = useState(null);
     const [score, setScore] = useState(0);
 
@@ -21,7 +21,7 @@ window.initGame = (React, assetsUrl) => {
       if (flippedCards[index] || firstCardIndex !== null) return;
 
       const newFlippedCards = [...flippedCards];
-      newFlippedCards[index] = true; // Fix here
+      newFlippedCards[index] = true; 
       setFlippedCards(newFlippedCards);
 
       if (firstCardIndex === null) {
@@ -44,11 +44,13 @@ window.initGame = (React, assetsUrl) => {
       'div',
       { className: "matching-character" },
       React.createElement('h2', null, "Matching Character Game"),
+      React.createElement('p', null, `Score: ${score}`),
       React.createElement(
         'div',
         { className: "game-board" },
         characters.map((character, index) =>
-      'div',
+          React.createElement(
+            'div',
             {
               key: index,
               className: `character ${flippedCards[index] ? 'flipped' : ''}`,
