@@ -2,21 +2,28 @@ window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
   const MatchingCharacter = ({ assetsUrl }) => {
-    const initialMatching = [
+    const initialCharacters = [
+      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
-      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
+      { id: 4, src: `${assetsUrl}/Charmander.png` },
+      { id: 4, src: `${assetsUrl}/Charmander.png` },
+      { id: 5, src: `${assetsUrl}/Jigglypuff.png` },
+      { id: 5, src: `${assetsUrl}/Jigglypuff.png` },
+      { id: 6, src: `${assetsUrl}/Eevee.png` },
+      { id: 6, src: `${assetsUrl}/Eevee.png` },
     ];
-
-    const [flippedCards, setFlippedCards] = useState(Array(6).fill(false));
+    
+    const [characters, setCharacters] = useState(initialCharacters);
+    const [flippedCards, setFlippedCards] = useState(Array(initialCharacters.length).fill(false));
     const [firstCardIndex, setFirstCardIndex] = useState(null);
-    const [canFlip, setCanFlip] = useState(true); 
+    const [canFlip, setCanFlip] = useState(true);
     const [score, setScore] = useState(0);
 
-    
+  
     const shuffleArray = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -40,11 +47,12 @@ window.initGame = (React, assetsUrl) => {
           setScore(score + 1);
           setFirstCardIndex(null);
           setCanFlip(true);
-          if (score + 1 === initialMatching.length / 2) {
-            alert("All cards have been matched!");
-            const shuffledCharacters = shuffleArray([...initialMatching]);
+          // 檢查是否所有卡片都已配對
+          if (score + 1 === initialCharacters.length / 2) {
+            alert("恭喜你！所有卡片都已配對！");
+            const shuffledCharacters = shuffleArray([...initialCharacters]);
             setCharacters(shuffledCharacters);
-            setFlippedCards(Array(6).fill(false));
+            setFlippedCards(Array(initialCharacters.length).fill(false));
             setScore(0);
           }
         } else {
@@ -58,7 +66,7 @@ window.initGame = (React, assetsUrl) => {
         }
       }
     };
-    
+
     return React.createElement(
       'div',
       { className: "matching-character" },
@@ -93,3 +101,6 @@ window.initGame = (React, assetsUrl) => {
 };
 
 console.log('Matching Character game script loaded');
+
+
+
