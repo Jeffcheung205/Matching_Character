@@ -9,12 +9,6 @@ window.initGame = (React, assetsUrl) => {
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-      { id: 4, src: `${assetsUrl}/Charmander.png` },
-      { id: 4, src: `${assetsUrl}/Charmander.png` },
-      { id: 5, src: `${assetsUrl}/Jigglypuff.png` },
-      { id: 5, src: `${assetsUrl}/Jigglypuff.png` },
-      { id: 6, src: `${assetsUrl}/Eevee.png` },
-      { id: 6, src: `${assetsUrl}/Eevee.png` },
     ];
     
     const [characters, setCharacters] = useState(initialCharacters);
@@ -47,9 +41,9 @@ window.initGame = (React, assetsUrl) => {
           setScore(score + 1);
           setFirstCardIndex(null);
           setCanFlip(true);
-          // 檢查是否所有卡片都已配對
+  
           if (score + 1 === initialCharacters.length / 2) {
-            alert("恭喜你！所有卡片都已配對！");
+            alert("All Cards sucessfully matched!");
             const shuffledCharacters = shuffleArray([...initialCharacters]);
             setCharacters(shuffledCharacters);
             setFlippedCards(Array(initialCharacters.length).fill(false));
