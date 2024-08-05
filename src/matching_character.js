@@ -57,13 +57,6 @@ window.initGame = (React, assetsUrl) => {
         'div',
         { className: "game-board" },
         characters.map((character, index) =>
-          React.createElement(
-            'div',
-            {
-              key: index,
-              className: "mole",
-              onClick: () => handleCardClick(index)
-            },
             flippedCards[index] && React.createElement('img', { src: character.src, alt: "Character" })
           )
         )
