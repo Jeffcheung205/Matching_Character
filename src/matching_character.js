@@ -44,7 +44,7 @@ window.initGame = (React, assetsUrl) => {
           setCanFlip(true);
           if (score + 1 === initialMatching.length / 2) {
             alert("All cards have been matched!");
-            const shuffledCharacters = shuffleArray([...initialCharacters]);
+            const shuffledCharacters = shuffleArray([...initialMatching]);
             setCharacters(shuffledCharacters);
             setFlippedCards(Array(6).fill(false));
             setScore(0);
