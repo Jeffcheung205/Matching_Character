@@ -9,7 +9,7 @@ window.initGame = (React, assetsUrl) => {
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-    ]);
+    ];
 
     const [flippedCards, setFlippedCards] = useState(Array(6).fill(false));
     const [firstCardIndex, setFirstCardIndex] = useState(null);
