@@ -17,7 +17,6 @@ window.initGame = (React, assetsUrl) => {
     const [canFlip, setCanFlip] = useState(true);
     const [score, setScore] = useState(0);
 
-  
     const shuffleArray = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -41,9 +40,10 @@ window.initGame = (React, assetsUrl) => {
           setScore(score + 1);
           setFirstCardIndex(null);
           setCanFlip(true);
-  
-          if (score + 1 === initialCharacters.length) {
-            alert("All Cards sucessfully matched!");
+
+          // Check if all pairs have been matched
+          if (score + 1 === initialCharacters.length / 2) {
+            alert("All Cards successfully matched!");
             const shuffledCharacters = shuffleArray([...initialCharacters]);
             setCharacters(shuffledCharacters);
             setFlippedCards(Array(initialCharacters.length).fill(false));
@@ -95,6 +95,3 @@ window.initGame = (React, assetsUrl) => {
 };
 
 console.log('Matching Character game script loaded');
-
-
-
