@@ -12,12 +12,13 @@ window.initGame = (React, assetsUrl) => {
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
     ]);
-    
-    const [flippedCards, setFlippedCards] = useState(Array(9).fill(false));
-    const [firstCardIndex, setFirstCardIndex] = useState(null);
-   
 
-const handleCardClick = (index) => {
+    const [flippedCards, setFlippedCards] = useState(Array(6).fill(false));
+    const [firstCardIndex, setFirstCardIndex] = useState(null);
+    const [canFlip, setCanFlip] = useState(true); 
+    const [score, setScore] = useState(0);
+
+    const handleCardClick = (index) => {
       if (!canFlip || flippedCards[index]) return;
 
       const newFlippedCards = [...flippedCards];
@@ -27,7 +28,11 @@ const handleCardClick = (index) => {
       if (firstCardIndex === null) {
         setFirstCardIndex(index);
       } else {
-        setCanFlip(false);
+        setCanFlip(false); 
+        if (characters[firstCardIndex].id === characters[index].id) {
+          setScore(score + 1);
+          setFirstCardIndex(null);
+          setCanFlip(true); 
         } else {
           setTimeout(() => {
             newFlippedCards[firstCardIndex] = false;
@@ -39,10 +44,12 @@ const handleCardClick = (index) => {
         }
       }
     };
+
     return React.createElement(
       'div',
       { className: "matching-character" },
       React.createElement('h2', null, "Matching Character Game"),
+      React.createElement('p', null, `Score: ${score}`),
       React.createElement(
         'div',
         { className: "game-board" },
