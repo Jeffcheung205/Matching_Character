@@ -53,14 +53,19 @@ window.initGame = (React, assetsUrl) => {
         'div',
         { className: "game-board" },
         characters.map((character, index) =>
+            'div',
+            {
+              key: index,
+              className: "character",
+              onClick: () => handleCardClick(index)
+            },
             flippedCards[index] && React.createElement('img', { src: character.src, alt: "Character" })
           )
         )
       )
     );
   };
-
-  return () => React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
+return () => React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
 };
 
 console.log('Matching Character game script loaded');
