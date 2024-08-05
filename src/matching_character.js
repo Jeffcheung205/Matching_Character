@@ -3,48 +3,76 @@
 window.initGame = (React, assetsUrl) => {
   const { useState, useEffect } = React;
 
-  const WhackAMole = ({ assetsUrl }) => {
+  // This would be stored in the 'src' folder of the GitHub repository
+// matching_character.js
+window.initGame = (React, assetsUrl) => {
+  const { useState, useEffect } = React;
+
+  const MatchingCharacter = ({ assetsUrl }) => {
+    const [characters] = useState([
+      { id: 1, src: `${assetsUrl}/character1.png` },
+      { id: 2, src: `${assetsUrl}/character2.png` },
+      { id: 1, src: `${assetsUrl}/character1.png` }, // Duplicate for matching
+      { id: 2, src: `${assetsUrl}/character2.png` }, // Duplicate for matching
+      { id: 3, src: `${assetsUrl}/character3.png` },
+      { id: 3, src: `${assetsUrl}/character3.png` }, // Duplicate for matching
+      { id: 4, src: `${assetsUrl}/character4.png` },
+      { id: 4, src: `${assetsUrl}/character4.png` }, // Duplicate for matching
+      { id: 5, src: `${assetsUrl}/character5.png` },
+      { id: 5, src: `${assetsUrl}/character5.png` }, // Duplicate for matching
+    ]);
+    
+    const [flipCards, setFlipCards] = useState(Array(10).fill(false));
+    const [firstCardIndex, setFirstCardIndex] = useState(null);
     const [score, setScore] = useState(0);
-    const [activeMole, setActiveMole] = useState(null);
 
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setActiveMole(Math.floor(Math.random() * 9));
-      }, 1000);
-      return () => clearInterval(interval);
-    }, []);
+    const handleCardClick = (index) => {
+      if (flippedCards[index] || firstCardIndex !== null) return;
 
-    const whackMole = (index) => {
-      if (index === activeMole) {
-        setScore(score + 1);
-        setActiveMole(null);
+      const newFlipCards = [...flipCards];
+      newFlippedCards[index] = true;
+      setFlippedCards(newFlippedCards);
+
+      if (firstCardIndex === null) {
+        setFirstCardIndex(index);
+      } else {
+        if (characters[firstCardIndex].id === characters[index].id) {
+          setScore(score + 1);
+        } else {
+          setTimeout(() => {
+            newFlippedCards[firstCardIndex] = false;
+            newFlippedCards[index] = false;
+            setFlipCards(newFlipCards);
+          }, 1000);
+        }
+        setFirstCardIndex(null);
       }
     };
 
     return React.createElement(
       'div',
-      { className: "whack-a-mole" },
-      React.createElement('h2', null, "Whack-a-Mole"),
+      { className: "matching-character" },
+      React.createElement('h2', null, "Matching Character Game"),
       React.createElement('p', null, `Score: ${score}`),
       React.createElement(
         'div',
         { className: "game-board" },
-        Array(9).fill().map((_, index) =>
+        characters.map((character, index) =>
           React.createElement(
             'div',
             {
               key: index,
-              className: `mole ${index === activeMole ? 'active' : ''}`,
-              onClick: () => whackMole(index)
+              className: "mole",
+              onClick: () => handleCardClick(index)
             },
-            index === activeMole && React.createElement('img', { src: `${assetsUrl}/mole.png`, alt: "Mole" })
+            flippedCards[index] && React.createElement('img', { src: character.src, alt: "Character" })
           )
         )
       )
     );
   };
 
-  return () => React.createElement(WhackAMole, { assetsUrl: assetsUrl });
+  return () => React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
 };
 
-console.log('Whack-a-Mole game script loaded');
+console.log('Matching Character game script loaded');
