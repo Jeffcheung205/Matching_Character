@@ -1,5 +1,3 @@
-// This would be stored in the 'src' folder of the GitHub repository
-// matching_character.js
 window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
