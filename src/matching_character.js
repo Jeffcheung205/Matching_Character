@@ -13,12 +13,12 @@ window.initGame = (React, assetsUrl) => {
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
     ]);
     
-    const [flippedCards, setFlippedCards] = useState(Array(6).fill(false));
+    const [flippedCards, setFlippedCards] = useState(Array(9).fill(false));
     const [firstCardIndex, setFirstCardIndex] = useState(null);
-    const [score, setScore] = useState(0);
+   
 
-    const handleCardClick = (index) => {
-      if (flippedCards[index] || firstCardIndex !== null) return;
+const handleCardClick = (index) => {
+      if (!canFlip || flippedCards[index]) return;
 
       const newFlippedCards = [...flippedCards];
       newFlippedCards[index] = true; 
@@ -27,19 +27,22 @@ window.initGame = (React, assetsUrl) => {
       if (firstCardIndex === null) {
         setFirstCardIndex(index);
       } else {
+        setCanFlip(false);
         if (characters[firstCardIndex].id === characters[index].id) {
           setScore(score + 1);
+          setFirstCardIndex(null);
+          setCanFlip(true); 
         } else {
           setTimeout(() => {
             newFlippedCards[firstCardIndex] = false;
             newFlippedCards[index] = false;
             setFlippedCards(newFlippedCards);
+            setFirstCardIndex(null);
+            setCanFlip(true); 
           }, 1000);
         }
-        setFirstCardIndex(null);
       }
     };
-
     return React.createElement(
       'div',
       { className: "matching-character" },
