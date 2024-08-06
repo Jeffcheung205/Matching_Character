@@ -2,6 +2,8 @@ window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
   const MatchingCharacter = ({ assetsUrl }) => {
+
+    // Initialize the matching game
     const initialCharacters = [
       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
