@@ -17,10 +17,10 @@ window.initGame = (React, assetsUrl) => {
     const [flippedCards, setFlippedCards] = useState(Array(initialCharacters.length).fill(false));
     const [firstCardIndex, setFirstCardIndex] = useState(null);
     const [canFlip, setCanFlip] = useState(true);
-    const [message, setMessage] = useState(""); // State for the message
+    const [message, setMessage] = useState(""); 
 
     // Shuffle the matching game
-    const shuffleArray = (array) => {
+     const shuffleArray = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
@@ -47,10 +47,12 @@ window.initGame = (React, assetsUrl) => {
           const allMatched = newFlippedCards.every((flipped) => flipped);
           if (allMatched) {
             setMessage("All Cards successfully matched!"); // Set the message
-            const shuffledCharacters = shuffleArray([...initialCharacters]);
-            setCharacters(shuffledCharacters);
-            setFlippedCards(Array(initialCharacters.length).fill(false));
-            setMessage(""); // Clear the message after resetting
+            setTimeout(() => {
+              const shuffledCharacters = shuffleArray([...initialCharacters]);
+              setCharacters(shuffledCharacters);
+              setFlippedCards(Array(initialCharacters.length).fill(false));
+              setMessage(""); // Clear the message after showing it
+            }, 2000); // Show message for 2 seconds before resetting
           }
         } else {
           setTimeout(() => {
