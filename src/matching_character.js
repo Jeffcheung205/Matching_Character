@@ -11,6 +11,10 @@ window.initGame = (React, assetsUrl) => {
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
+      { id: 4, src: `${assetsUrl}/Charmander.png`},
+      { id: 4, src: `${assetsUrl}/Charmander.png` },
+      { id: 5, src: `${assetsUrl}/Pokeball.png` },
+      { id: 5, src: `${assetsUrl}/BPokeball.png` },
     ];
     
     const [characters, setCharacters] = useState(initialCharacters);
@@ -96,8 +100,6 @@ window.initGame = (React, assetsUrl) => {
       )
     );
   };
-
-  return () => React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
+return () => React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
 };
-
 console.log('Matching Character game script loaded');
