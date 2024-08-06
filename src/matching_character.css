@@ -61,6 +61,7 @@
   object-fit: cover;
 }
 
-p {
-  color:brown;
+.success-message {
+  color: green;
+  font-weight: bold;
 }
