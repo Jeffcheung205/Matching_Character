@@ -14,11 +14,34 @@ window.initGame = (React, assetsUrl) => {
       { id: 4, src: `${assetsUrl}/Charmander.png`},
       { id: 4, src: `${assetsUrl}/Charmander.png` },
       { id: 5, src: `${assetsUrl}/Pokeball.png` },
-      { id: 5, src: `${assetsUrl}/BPokeball.png` },
+      { id: 5, src: `${assetsUrl}/Pokeball.png` },
+      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
+      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
+      { id: 2, src: `${assetsUrl}/Squirtle.png` },
+      { id: 2, src: `${assetsUrl}/Squirtle.png` },
+      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
+      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
+      { id: 4, src: `${assetsUrl}/Charmander.png`},
+      { id: 4, src: `${assetsUrl}/Charmander.png` },
+      { id: 5, src: `${assetsUrl}/Pokeball.png` },
+      { id: 5, src: `${assetsUrl}/Pokeball.png` },
+       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
+      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
+      { id: 2, src: `${assetsUrl}/Squirtle.png` },
+      { id: 2, src: `${assetsUrl}/Squirtle.png` },
+      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
+      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
+      { id: 4, src: `${assetsUrl}/Charmander.png`},
+      { id: 4, src: `${assetsUrl}/Charmander.png` },
+      { id: 5, src: `${assetsUrl}/Pokeball.png` },
+      { id: 5, src: `${assetsUrl}/Pokeball.png` }
     ];
     
     const [characters, setCharacters] = useState(initialCharacters);
-    const [flippedCards, setFlippedCards] = useState(Array(initialCharacters.length).fill(false));
+    const [flippedCards, setFlippedCards] = useState(Array(25).fill(false));
+    const [firstCardIndex, setFirstCardIndex] = useState(null);
+    const [score, setScore] = useState(0);
+
     const [firstCardIndex, setFirstCardIndex] = useState(null);
     const [canFlip, setCanFlip] = useState(true);
     const [message, setMessage] = useState(""); 
