@@ -2,58 +2,38 @@ window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
   const MatchingCharacter = ({ assetsUrl }) => {
-
-    // Initialize the matching game
-    const initialCharacters = [
-      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
+    const characters = [
       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
-      { id: 2, src: `${assetsUrl}/Squirtle.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-      { id: 4, src: `${assetsUrl}/Charmander.png`},
       { id: 4, src: `${assetsUrl}/Charmander.png` },
       { id: 5, src: `${assetsUrl}/Pokeball.png` },
-      { id: 5, src: `${assetsUrl}/Pokeball.png` },
-      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
-      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
-      { id: 2, src: `${assetsUrl}/Squirtle.png` },
-      { id: 2, src: `${assetsUrl}/Squirtle.png` },
-      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-      { id: 4, src: `${assetsUrl}/Charmander.png`},
-      { id: 4, src: `${assetsUrl}/Charmander.png` },
-      { id: 5, src: `${assetsUrl}/Pokeball.png` },
-      { id: 5, src: `${assetsUrl}/Pokeball.png` },
-      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
-      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
-      { id: 2, src: `${assetsUrl}/Squirtle.png` },
-      { id: 2, src: `${assetsUrl}/Squirtle.png` },
-      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-      { id: 4, src: `${assetsUrl}/Charmander.png`},
-      { id: 4, src: `${assetsUrl}/Charmander.png` },
-      { id: 5, src: `${assetsUrl}/Pokeball.png` },
-      { id: 5, src: `${assetsUrl}/Pokeball.png` }
     ];
-    
-    const [characters, setCharacters] = useState(initialCharacters);
-    const [flippedCards, setFlippedCards] = useState(Array(25).fill(false));
-    const [firstCardIndex, setFirstCardIndex] = useState(null);
-    const [score, setScore] = useState(0);
 
-    const [firstCardIndex, setFirstCardIndex] = useState(null);
-    const [canFlip, setCanFlip] = useState(true);
-    const [message, setMessage] = useState(""); 
+    // Create pairs and shuffle
+    const createGameBoard = () => {
+      const pairs = characters.flatMap(asset => [asset, asset]); // Creating pairs
+      while (pairs.length < 25) { // Fill up to 25 cards
+        pairs.push(assets[Math.floor(Math.random() * characters.length)]);
+      }
+      return shuffleArray(pairs);
+    };
 
-    // Shuffle the matching game
-     const shuffleArray = (array) => {
+    const shuffleArray = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
       }
       return array;
     };
+
+    const initialCharacters = createGameBoard();
+
+    const [characters, setCharacters] = useState(initialCharacters);
+    const [flippedCards, setFlippedCards] = useState(Array(initialCharacters.length).fill(false));
+    const [firstCardIndex, setFirstCardIndex] = useState(null);
+    const [canFlip, setCanFlip] = useState(true);
+    const [message, setMessage] = useState(""); // State for the message
 
     const handleCardClick = (index) => {
       if (!canFlip || flippedCards[index]) return;
@@ -75,7 +55,7 @@ window.initGame = (React, assetsUrl) => {
           if (allMatched) {
             setMessage("All Cards successfully matched!"); // Set the message
             setTimeout(() => {
-              const shuffledCharacters = shuffleArray([...initialCharacters]);
+              const shuffledCharacters = createGameBoard();
               setCharacters(shuffledCharacters);
               setFlippedCards(Array(initialCharacters.length).fill(false));
               setMessage(""); // Clear the message after showing it
@@ -123,6 +103,8 @@ window.initGame = (React, assetsUrl) => {
       )
     );
   };
-return () => React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
+
+  return () => React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
 };
+
 console.log('Matching Character game script loaded');
