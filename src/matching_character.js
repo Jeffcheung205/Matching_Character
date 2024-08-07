@@ -1,38 +1,35 @@
-  window.initGame = (React, assetsUrl) => {
-  const { useState } = React;
+ const MatchingCharacter = ({ assetsUrl }) => {
+  const assets = [
+    { id: 1, src: `${assetsUrl}/Pikachiu.png` },
+    { id: 2, src: `${assetsUrl}/Squirtle.png` },
+    { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
+    { id: 4, src: `${assetsUrl}/Charmander.png` },
+    { id: 5, src: `${assetsUrl}/Pokeball.png` },
+  ];
 
-  const MatchingCharacter = ({ assetsUrl }) => {
-    const assets = [
-      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
-      { id: 2, src: `${assetsUrl}/Squirtle.png` },
-      { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
-      { id: 4, src: `${assetsUrl}/Charmander.png` },
-      { id: 5, src: `${assetsUrl}/Pokeball.png` },
-    ];
-
-   // Create pairs and shuffle
+  // Create pairs and shuffle
   const createGameBoard = () => {
-  const pairs = assets.flatMap(asset => [asset, asset]); // Creating pairs
-  while (pairs.length < 10) { // Corrected line
-    pairs.push(assets[Math.floor(Math.random() * assets.length)]);
-  }
-  return shuffleArray(pairs);
-};
+    const pairs = assets.flatMap(asset => [asset, asset]); // Creating pairs
+    while (pairs.length < 10) { // Corrected line
+      pairs.push(assets[Math.floor(Math.random() * assets.length)]);
+    }
+    return shuffleArray(pairs);
+  };
 
-    const shuffleArray = (array) => {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-    };
-    
-    // Initialize the matching game
-    const [characters, setCharacters] = useState(createGameBoard()); 
-    const [flippedCards, setFlippedCards] = useState(Array(10).fill(false));
-    const [firstCardIndex, setFirstCardIndex] = useState(null);
-    const [canFlip, setCanFlip] = useState(true);
-    const [message, setMessage] = useState(""); // State for the message
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  // Initialize the matching game
+  const [characters, setCharacters] = useState(createGameBoard());
+  const [flippedCards, setFlippedCards] = useState(Array(10).fill(false));
+  const [firstCardIndex, setFirstCardIndex] = useState(null);
+  const [canFlip, setCanFlip] = useState(true);
+  const [message, setMessage] = useState(""); // State for the message
 
     const handleCardClick = (index) => {
       if (!canFlip || flippedCards[index]) return;
