@@ -25,7 +25,7 @@ window.initGame = (React, assetsUrl) => {
       { id: 4, src: `${assetsUrl}/Charmander.png` },
       { id: 5, src: `${assetsUrl}/Pokeball.png` },
       { id: 5, src: `${assetsUrl}/Pokeball.png` },
-       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
+      { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
