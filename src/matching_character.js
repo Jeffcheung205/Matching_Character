@@ -13,7 +13,7 @@
     // Create pairs and shuffle
     const createGameBoard = () => {
       const pairs = assets.flatMap(asset => [asset, asset]); // Creating pairs
-      while (pairs.length < 25) { // Fill up to 25 cards
+      while (pairs.length < 10 { 
         pairs.push(assets[Math.floor(Math.random() * assets.length)]);
       }
       return shuffleArray(pairs);
@@ -26,9 +26,10 @@
       }
       return array;
     };
-
-    const [characters, setCharacters] = useState(createGameBoard()); // Initialize state directly with the game board
-    const [flippedCards, setFlippedCards] = useState(Array(25).fill(false)); // Initialize with 25 cards
+    
+    // Initialize the matching game
+    const [characters, setCharacters] = useState(createGameBoard()); 
+    const [flippedCards, setFlippedCards] = useState(Array(10).fill(false));
     const [firstCardIndex, setFirstCardIndex] = useState(null);
     const [canFlip, setCanFlip] = useState(true);
     const [message, setMessage] = useState(""); // State for the message
@@ -55,7 +56,7 @@
             setTimeout(() => {
               const shuffledCharacters = createGameBoard();
               setCharacters(shuffledCharacters);
-              setFlippedCards(Array(25).fill(false));
+              setFlippedCards(Array(10).fill(false));
               setMessage(""); // Clear the message after showing it
             }, 2000); // Show message for 2 seconds before resetting
           }
