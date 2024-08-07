@@ -51,7 +51,7 @@
           // Check if all pairs have been matched
           const allMatched = newFlippedCards.every((flipped) => flipped);
           if (allMatched) {
-            setMessage("All Cards successfully matched!"); // Set the message
+            setMessage("All Cards successfully matched!");
             setTimeout(() => {
               const shuffledCharacters = createGameBoard();
               setCharacters(shuffledCharacters);
