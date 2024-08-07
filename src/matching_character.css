@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.game-board {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 columns */
-  gap: 10px; /* Space between cards */
-}
 
 .character {
   cursor: pointer;
@@ -46,6 +41,7 @@
   align-items: center;
   justify-content: center;
   font-size: 24px;
+   grid-template-columns: repeat(5, 1fr); 
 }
 
 .card-back {
