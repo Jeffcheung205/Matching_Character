@@ -2,7 +2,7 @@ window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
   const MatchingCharacter = ({ assetsUrl }) => {
-    const characters = [
+    const assets = [
       { id: 1, src: `${assetsUrl}/Pikachiu.png` },
       { id: 2, src: `${assetsUrl}/Squirtle.png` },
       { id: 3, src: `${assetsUrl}/Bulbasaur.png` },
@@ -12,7 +12,7 @@ window.initGame = (React, assetsUrl) => {
 
     // Create pairs and shuffle
     const createGameBoard = () => {
-      const pairs = characters.flatMap(asset => [asset, asset]); // Creating pairs
+      const pairs  =assets.flatMap(asset => [asset, asset]); // Creating pairs
       while (pairs.length < 25) { // Fill up to 25 cards
         pairs.push(assets[Math.floor(Math.random() * characters.length)]);
       }
