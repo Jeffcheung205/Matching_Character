@@ -13,7 +13,7 @@
     // Create pairs and shuffle
     const createGameBoard = () => {
       const pairs = assets.flatMap(asset => [asset, asset]); // Creating pairs
-      while (pairs.length < 10 { 
+      while (pairs.length < 10) { 
         pairs.push(assets[Math.floor(Math.random() * assets.length)]);
       }
       return shuffleArray(pairs);
