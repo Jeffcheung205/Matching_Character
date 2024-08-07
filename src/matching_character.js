@@ -48,6 +48,7 @@
         if (characters[firstCardIndex].id === characters[index].id) {
           setFirstCardIndex(null);
           setCanFlip(true);
+        }
           
           // Check if all pairs have been matched
           const allMatched = newFlippedCards.every((flipped) => flipped);
