@@ -4,15 +4,12 @@
 
 .game-board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-gap: 10px;
-  margin: 20px auto;
-  width: 320px;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns */
+  gap: 10px; /* Space between cards */
 }
+
 .character {
-  width: 100px;
-  height: 100px;
-  perspective: 1000px;
+  cursor: pointer;
 }
 
 .card {
