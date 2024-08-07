@@ -1,4 +1,4 @@
-window.initGame = (React, assetsUrl) => {
+  window.initGame = (React, assetsUrl) => {
   const { useState } = React;
 
   const MatchingCharacter = ({ assetsUrl }) => {
@@ -12,9 +12,9 @@ window.initGame = (React, assetsUrl) => {
 
     // Create pairs and shuffle
     const createGameBoard = () => {
-      const pairs  =assets.flatMap(asset => [asset, asset]); // Creating pairs
+      const pairs = assets.flatMap(asset => [asset, asset]); // Creating pairs
       while (pairs.length < 25) { // Fill up to 25 cards
-        pairs.push(assets[Math.floor(Math.random() * characters.length)]);
+        pairs.push(assets[Math.floor(Math.random() * assets.length)]);
       }
       return shuffleArray(pairs);
     };
@@ -27,10 +27,8 @@ window.initGame = (React, assetsUrl) => {
       return array;
     };
 
-    const initialCharacters = createGameBoard();
-
-    const [characters, setCharacters] = useState(initialCharacters);
-    const [flippedCards, setFlippedCards] = useState(Array(initialCharacters.length).fill(false));
+    const [characters, setCharacters] = useState(createGameBoard()); // Initialize state directly with the game board
+    const [flippedCards, setFlippedCards] = useState(Array(25).fill(false)); // Initialize with 25 cards
     const [firstCardIndex, setFirstCardIndex] = useState(null);
     const [canFlip, setCanFlip] = useState(true);
     const [message, setMessage] = useState(""); // State for the message
@@ -57,7 +55,7 @@ window.initGame = (React, assetsUrl) => {
             setTimeout(() => {
               const shuffledCharacters = createGameBoard();
               setCharacters(shuffledCharacters);
-              setFlippedCards(Array(initialCharacters.length).fill(false));
+              setFlippedCards(Array(25).fill(false));
               setMessage(""); // Clear the message after showing it
             }, 2000); // Show message for 2 seconds before resetting
           }
