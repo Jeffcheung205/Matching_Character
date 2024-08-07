@@ -10,14 +10,14 @@
       { id: 5, src: `${assetsUrl}/Pokeball.png` },
     ];
 
-    // Create pairs and shuffle
-    const createGameBoard = () => {
-      const pairs = assets.flatMap(asset => [asset, asset]); // Creating pairs
-      while (pairs.length < 10) { 
-        pairs.push(assets[Math.floor(Math.random() * assets.length)]);
-      }
-      return shuffleArray(pairs);
-    };
+   // Create pairs and shuffle
+  const createGameBoard = () => {
+  const pairs = assets.flatMap(asset => [asset, asset]); // Creating pairs
+  while (pairs.length < 10) { // Corrected line
+    pairs.push(assets[Math.floor(Math.random() * assets.length)]);
+  }
+  return shuffleArray(pairs);
+};
 
     const shuffleArray = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
