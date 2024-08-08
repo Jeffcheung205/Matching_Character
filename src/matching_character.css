@@ -4,7 +4,7 @@
 }
 
 .game-board {
-  display: flex;
+  display: ;
   flex-wrap: wrap;
   justify-content: center;
   grid-template-columns: repeat(5, 1fr);
