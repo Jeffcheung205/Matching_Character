@@ -62,3 +62,7 @@
   height: 100%;
   object-fit: cover;
 }
+
+success-message {
+  color:green;
+}
