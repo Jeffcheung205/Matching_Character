@@ -57,8 +57,7 @@
               setFlippedCards(Array(10).fill(false));
               setMessage(""); // Clear the message after showing it
             }, 2000); // Show message for 2 seconds before resetting
-          }
-        } else {
+          } else {
           setTimeout(() => {
             newFlippedCards[firstCardIndex] = false;
             newFlippedCards[index] = false;
