@@ -47,20 +47,8 @@ const handleCardClick = (index) => {
     if (characters[firstCardIndex].id === characters[index].id) {
       setFirstCardIndex(null);
       setCanFlip(true);
-    }
-      
-      // Check if all pairs have been matched
-      const allMatched = newFlippedCards.every((flipped) => flipped);
-      if (allMatched) {
-        setMessage("All Cards successfully matched!");
-        setTimeout(() => {
-          const shuffledCharacters = createGameBoard();
-          setCharacters(shuffledCharacters);
-          setFlippedCards(Array(10).fill(false));
-          setMessage(""); // Clear the message after showing it
-        }, 2000); // Show message for 2 seconds before resetting
-      }
     } else {
+      // If the cards do not match, wait for 1 second and flip them back
       setTimeout(() => {
         newFlippedCards[firstCardIndex] = false;
         newFlippedCards[index] = false;
@@ -68,6 +56,18 @@ const handleCardClick = (index) => {
         setFirstCardIndex(null);
         setCanFlip(true);
       }, 1000);
+    }
+
+    // Check if all pairs have been matched
+    const allMatched = newFlippedCards.every((flipped) => flipped);
+    if (allMatched) {
+      setMessage("All Cards successfully matched!");
+      setTimeout(() => {
+        const shuffledCharacters = createGameBoard();
+        setCharacters(shuffledCharacters);
+        setFlippedCards(Array(10).fill(false));
+        setMessage(""); 
+      }, 2000); 
     }
   }
 };
