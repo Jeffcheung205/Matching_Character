@@ -63,6 +63,6 @@
   object-fit: cover;
 }
 
-success-message {
+.success-message {
   color:green;
 }
