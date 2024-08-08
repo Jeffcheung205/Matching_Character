@@ -68,7 +68,43 @@
           }, 1000);
         }
       }
-    };
+    const handleCardClick = (index) => {
+  if (!canFlip || flippedCards[index]) return;
+
+  const newFlippedCards = [...flippedCards];
+  newFlippedCards[index] = true; 
+  setFlippedCards(newFlippedCards);
+
+  if (firstCardIndex === null) {
+    setFirstCardIndex(index);
+  } else {
+    setCanFlip(false);
+    if (characters[firstCardIndex].id === characters[index].id) {
+      setFirstCardIndex(null);
+      setCanFlip(true);
+    } else {
+      setTimeout(() => {
+        newFlippedCards[firstCardIndex] = false;
+        newFlippedCards[index] = false;
+        setFlippedCards(newFlippedCards);
+        setFirstCardIndex(null);
+        setCanFlip(true);
+      }, 1000);
+    }
+
+    // Check if all pairs have been matched
+    const allMatched = newFlippedCards.every((flipped) => flipped);
+    if (allMatched) {
+      setMessage("All Cards successfully matched!");
+      setTimeout(() => {
+        const shuffledCharacters = createGameBoard();
+        setCharacters(shuffledCharacters);
+        setFlippedCards(Array(10).fill(false));
+        setMessage(""); // Clear the message after showing it
+      }, 2000); // Show message for 2 seconds before resetting
+    }
+  }
+};
 
     return React.createElement(
       'div',
