@@ -33,7 +33,7 @@ window.initGame = (React, assetsUrl) => {
     const [canFlip, setCanFlip] = useState(true);
     const [message, setMessage] = useState("");
 
-  const handleCardClick = (index) => {
+const handleCardClick = (index) => {
   if (!canFlip || flippedCards[index]) return;
 
   const newFlippedCards = [...flippedCards];
@@ -102,5 +102,6 @@ return React.createElement(
   )
 );
 };
+
 return () => React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
 };
