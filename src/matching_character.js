@@ -33,38 +33,74 @@ window.initGame = (React, assetsUrl) => {
     const [canFlip, setCanFlip] = useState(true);
     const [message, setMessage] = useState("");
 
-    const handleCardClick = (index) => {
-      // Your existing handleCardClick logic here...
-    };
+  const handleCardClick = (index) => {
+  if (!canFlip || flippedCards[index]) return;
 
-    return React.createElement(
-      'div',
-      { className: "matching-character" },
-      React.createElement('h2', null, "Matching Character Game"),
-      message && React.createElement('p', { className: "success-message" }, message),
+  const newFlippedCards = [...flippedCards];
+  newFlippedCards[index] = true; 
+  setFlippedCards(newFlippedCards);
+
+  if (firstCardIndex === null) {
+    setFirstCardIndex(index);
+  } else {
+    setCanFlip(false);
+    if (characters[firstCardIndex].id === characters[index].id) {
+      setFirstCardIndex(null);
+      setCanFlip(true);
+    }
+      
+      // Check if all pairs have been matched
+      const allMatched = newFlippedCards.every((flipped) => flipped);
+      if (allMatched) {
+        setMessage("All Cards successfully matched!");
+        setTimeout(() => {
+          const shuffledCharacters = createGameBoard();
+          setCharacters(shuffledCharacters);
+          setFlippedCards(Array(10).fill(false));
+          setMessage(""); // Clear the message after showing it
+        }, 2000); // Show message for 2 seconds before resetting
+      }
+    } else {
+      setTimeout(() => {
+        newFlippedCards[firstCardIndex] = false;
+        newFlippedCards[index] = false;
+        setFlippedCards(newFlippedCards);
+        setFirstCardIndex(null);
+        setCanFlip(true);
+      }, 1000);
+    }
+  }
+};
+
+return React.createElement(
+  'div',
+  { className: "matching-character" },
+  React.createElement('h2', null, "Matching Character Game"),
+  // Render the message if it exists
+  message && React.createElement('p', { className: "success-message" }, message),
+  React.createElement(
+    'div',
+    { className: "game-board" },
+    characters.map((character, index) =>
       React.createElement(
         'div',
-        { className: "game-board" },
-        characters.map((character, index) =>
-          React.createElement(
-            'div',
-            {
-              key: index,
-              className: `character ${flippedCards[index] ? 'flipped' : ''}`,
-              onClick: () => handleCardClick(index)
-            },
-            React.createElement('div', { className: 'card' }, 
-              React.createElement('div', { className: 'card-inner' },
-                React.createElement('div', { className: 'card-front' }, "?"),
-                React.createElement('div', { className: 'card-back' },
-                  React.createElement('img', { src: character.src, alt: "Character" })
-                )
-              )
+        {
+          key: index,
+          className: `character ${flippedCards[index] ? 'flipped' : ''}`,
+          onClick: () => handleCardClick(index)
+        },
+        React.createElement('div', { className: 'card' }, 
+          React.createElement('div', { className: 'card-inner' },
+            React.createElement('div', { className: 'card-front' }, "?"),
+            React.createElement('div', { className: 'card-back' },
+              React.createElement('img', { src: character.src, alt: "Character" })
             )
           )
         )
       )
-    );
-  };
-return React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
+    )
+  )
+);
+};
+return () => React.createElement(MatchingCharacter, { assetsUrl: assetsUrl });
 };
